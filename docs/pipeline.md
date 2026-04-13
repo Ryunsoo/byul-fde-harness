@@ -76,9 +76,30 @@ docs/requirements.md (FDE 작성)
 | moderator | Opus | 3개 안 평가와 종합은 품질이 전체 결과를 좌우 |
 | code-reviewer | Sonnet | 코드 리뷰는 패턴 매칭 위주 |
 
+## Hooks (자동 강제 장치)
+
+### Claude Code Stop Hook
+- 파일: `.claude/hooks/check-artifact-commit.sh`
+- 설정: `.claude/settings.json`
+- 동작: Claude가 응답을 마치려 할 때, 아래 산출물이 커밋되지 않았으면 차단하고 커밋 지시:
+  - `docs/analysis.md`
+  - `docs/design.md`
+  - `CLAUDE.md`
+  - `PROMPT.md`
+- 목적: skill이 산출물 커밋 단계를 빠뜨려도 hook이 강제 실행시킨다
+
+### Git Pre-commit Hook
+- 파일: `.husky/pre-commit`
+- 동작:
+  1. lint-staged로 staged 파일의 prettier + eslint 실행
+  2. TS 파일이 staged 되어 있으면 타입체크(`tsc --noEmit`) 실행
+- 목적: 커밋 시 포맷/린트/타입 오류를 사전 차단
+
 ## 참고 문서
 
 - `process-harness-plan.md` — 하네스 전체 설계 문서
 - `harness/templates/requirements-template.md` — 요구사항서 템플릿
 - `.claude/skills/*/SKILL.md` — 각 skill의 상세 동작
 - `.claude/agents/*.md` — 각 에이전트의 역할과 페르소나
+- `.claude/hooks/*.sh` — Claude Code hook 스크립트
+- `.claude/settings.json` — Claude Code hook 설정

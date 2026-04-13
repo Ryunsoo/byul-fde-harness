@@ -46,7 +46,16 @@
 ## Git Hooks (root level)
 - **Husky** + **lint-staged**
 - Install at monorepo root (`package.json`)
-- Pre-commit hook (`.husky/pre-commit`): `npx lint-staged --no-stash`
+- Pre-commit hook (`.husky/pre-commit`):
+  ```bash
+  # 1. lint-staged (staged 파일 대상 prettier + eslint)
+  npx lint-staged --no-stash || exit 1
+
+  # 2. 타입 체크 (TS 변경 시에만)
+  if git diff --cached --name-only | grep -qE '^frontend/.*\.(ts|tsx)$'; then
+    (cd frontend && npx tsc --noEmit) || exit 1
+  fi
+  ```
 - lint-staged config (root `package.json`):
   ```json
   {
@@ -64,6 +73,7 @@
 - Prettier must be installed at root level as well
 - ESLint는 root에 설치하지 않는다. frontend의 바이너리를 직접 참조한다.
 - `--no-stash` 옵션 필수: untracked 파일이 많은 모노레포에서 stash 충돌 방지
+- 타입체크는 TS 파일이 staged 되어 있을 때만 실행하여 속도 최적화
 
 ## Package Scripts
 ```json
