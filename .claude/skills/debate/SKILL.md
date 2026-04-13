@@ -67,12 +67,9 @@ allowed-tools: Read, Write, Grep, Glob, Agent, Bash
 
 ### 4단계: 사회자 판정
 
-`moderator` 에이전트의 역할 정의를 참고하여 직접 판정한다:
-1. `docs/debate/agent-a-final.md`와 `docs/debate/agent-b-final.md`를 읽는다.
-2. 각 안의 장점과 단점을 평가한다.
-3. 제3안을 생성한다 (A/B의 장점을 조합하거나 새로운 접근).
-4. 3개 안 중 최적안을 선정하고 근거를 명시한다.
-5. 최적안을 기반으로 `docs/design.md`를 작성한다.
+`moderator` 에이전트(`.claude/agents/moderator.md`)를 subagent로 호출한다:
+- 작업: `docs/debate/agent-a-final.md`와 `docs/debate/agent-b-final.md`를 읽고, 각 안을 평가하라. A/B의 장점을 조합한 제3안을 생성한 뒤, 3개 안 중 최적안을 선정하라. 최적안을 기반으로 `docs/design.md`를 작성하라.
+- 출력: `docs/design.md` (최적안 + 선정 근거 + 토론 기록 포함)
 
 ## 출력
 

@@ -57,6 +57,25 @@ docs/requirements.md (FDE 작성)
 - `/review`의 개선 계획이 비어있을 때까지 이 사이클을 반복한다.
 - 프로젝트 완료 시 `/lesson-learn`으로 교훈을 프리셋에 반영한다.
 
+## 모델 권장 설정
+
+비용 효율을 위해 역할별로 다른 모델을 사용한다.
+
+### 오케스트레이터 (메인 세션)
+- **Sonnet 4.6** 권장
+- 역할: skill 파일 읽기, subagent 호출, 결과 수집, 단계 전환
+- 깊은 추론은 모든 subagent에 위임되어 있어 Sonnet으로 충분
+
+### 에이전트 (subagent)
+각 에이전트의 `model` frontmatter에 정의되어 있다.
+
+| 에이전트 | 모델 | 이유 |
+|---------|------|------|
+| architect-radical | Opus | 혁신적 설계안 도출 시 깊은 추론 필요 |
+| architect-stable | Sonnet | 검증된 패턴 기반 설계는 Sonnet으로 충분 |
+| moderator | Opus | 3개 안 평가와 종합은 품질이 전체 결과를 좌우 |
+| code-reviewer | Sonnet | 코드 리뷰는 패턴 매칭 위주 |
+
 ## 참고 문서
 
 - `process-harness-plan.md` — 하네스 전체 설계 문서

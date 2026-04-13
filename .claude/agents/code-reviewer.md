@@ -1,7 +1,7 @@
 ---
 description: "코드 리뷰 전문가. 요구사항 충족 여부, 코드 구조, 품질을 심각도별로 평가한다."
 tools: ["Read", "Grep", "Glob", "Bash"]
-model: "claude-opus-4-6"
+model: "claude-sonnet-4-6"
 ---
 
 # Code Reviewer — 코드 리뷰어
