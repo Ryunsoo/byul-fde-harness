@@ -57,8 +57,17 @@ allowed-tools: Read, Write, Grep, Glob, Agent, Bash
 - 요구사항서에 모호한 부분이 있으면 가장 합리적인 해석을 선택하고, 그 판단을 명시하라.
 - 출력 완료 후 `docs/analysis.md`가 정상 생성되었는지 확인하라.
 
+## 산출물 커밋
+
+출력 완료 후, `docs/analysis.md`를 git commit 한다:
+```
+git add docs/analysis.md
+git commit -m "docs: add project analysis result"
+```
+
 ## 완료 조건
 
 - `docs/analysis.md` 파일이 생성됨
 - 위 형식의 4개 섹션이 모두 포함됨
 - 설계 내용(API, 모델 등)이 포함되어 있지 않음
+- git commit 완료

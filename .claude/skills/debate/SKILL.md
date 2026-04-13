@@ -115,9 +115,18 @@ allowed-tools: Read, Write, Grep, Glob, Agent, Bash
 - 토론 단계에서 병렬 호출이 가능한 단계는 반드시 병렬로 실행하라.
 - 사회자는 단순히 "좋은 것만 고르기"가 아니라, 두 안의 장점을 조합한 제3안을 반드시 생성하라.
 
+## 산출물 커밋
+
+출력 완료 후, 설계 결과와 토론 산출물을 git commit 한다:
+```
+git add docs/design.md docs/debate/
+git commit -m "docs: add design result from multi-agent debate"
+```
+
 ## 완료 조건
 
 - `docs/design.md` 파일이 생성됨
 - 위 형식의 모든 섹션이 포함됨
 - `docs/debate/` 디렉토리에 토론 중간 산출물이 보존됨
 - 선정 근거가 명확히 기술됨
+- git commit 완료
